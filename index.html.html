@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Canvas Workshop</title>
+    <div style="background-image: url('https://i.pinimg.com/originals/9e/03/4d/9e034dec913971c7750e4836dc1f479b.png');">
+</head>
+<body>
+
+<canvas id="myCanvas" width="960" height="640"></canvas>
+
+<script>
+	// JavaScript code goes here
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  var x = canvas.width/2;
+  var y = canvas.height-30;
+  var dx = 2;
+  var dy = -2;
+  var ballRadius = 10;
+
+  function drawBall() {
+      ctx.beginPath();
+      ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+      ctx.fillStyle = "#0095DD";
+      ctx.fill();
+      ctx.closePath();
+  }
+
+  function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      //ctx.strokeStyle = 'black';
+      //ctx.strokeRect(0, 0, canvas.width, canvas.height);
+      //ctx.globalAlpha = 1;
+      drawBall();
+      if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+          dx = -dx;
+      }
+      if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+          dy = -dy;
+      }
+      x += dx;
+      y += dy;
+
+  }
+
+  setInterval(draw, 10);
+
+</script>
+
+</body>
+</html>
